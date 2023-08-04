@@ -1,4 +1,4 @@
-params (
+param(
   [Parameter(Mandatory=$true)]
   [string]$uri,
   [Parameter(Mandatory=$true)]
