@@ -10,17 +10,18 @@ jobs:
       runs-on: ubuntu-latest
       name: send message to teams
       steps:
-        - uses: neonidian/teams-notify-build-status@v3
-          with:
-            # can be muli-line using YAML mult-line string
-            webhookUrl: |
-              ${{ secrets.TEAMSWEBHOOK }}
-            title: What's up next
-            ## titleBackgroundColor: green # allowed values are 'success', 'green', 'failure', 'red', 'cancelled', 'yellow', 'skipped', 'blue'
-            ## status: test # appears in status label
-            message: >-
-              Next up is this and that
-          env:
-            SHOULD_DISPLAY_ACTOR_LABEL: false
-            SHOULD_DISPLAY_VIEW_RUN_BUTTON: false
-            SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: false
+        - run: |
+            $events = Import-Csv -Path ./events/data/talks.csv
+            $next = ($events | Select-Object time -Unique -First 1).time
+            $nextEvents = ($events | Where-Object { $_.time -eq $next })
+            $message = @()
+            $message += "Coming up next..."
+
+            if ($nextEvents) {
+              foreach ($event in $nextEvents) {
+                $message += "$($event.name) with '$($event.talk)' in the $($event.room) room"
+              }
+            }
+            $body = '{"text":"{{message}}"}'.Replace("{{message}}", $message)
+            Invoke-RestMethod -Method post -ContentType 'Application/Json' -Body $body -Uri ${{ secrets.TEAMSWEBHOOK }}
+          shell: Powershell
