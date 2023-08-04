@@ -10,6 +10,10 @@ jobs:
       runs-on: ubuntu-latest
       name: send message to teams
       steps:
+        - uses: actions/checkout@v2
+          with:
+            token: ${{ secrets.JB_ACCESS_TOKEN }}
+            submodules: true
         - run: |
             $events = Import-Csv -Path events/data/talks.csv
             $next = ($events | Select-Object time -Unique -First 1).time
