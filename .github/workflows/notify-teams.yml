@@ -24,4 +24,4 @@ jobs:
             }
             $body = '{"text":"{{message}}"}'.Replace("{{message}}", $message)
             Invoke-RestMethod -Method post -ContentType 'Application/Json' -Body $body -Uri ${{ secrets.TEAMSWEBHOOK }}
-          shell: Powershell
+          shell: pwsh
