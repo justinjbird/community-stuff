@@ -1,4 +1,4 @@
-$events = Import-Csv -Path events-messager/data/talks.csv
+$events = Import-Csv -Path events-messenger/data/talks.csv
 $next = ($events | Select-Object time -Unique -First 1).time
 $nextEvents = ($events | Where-Object { $_.time -eq $next })
 $nextEventsMessage = @()
