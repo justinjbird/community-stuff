@@ -15,11 +15,11 @@ jobs:
             # can be muli-line using YAML mult-line string
             webhookUrl: |
               ${{ secrets.TEAMSWEBHOOK }}
-            title: First Test # Specify a title header
-            titleBackgroundColor: green # allowed values are green, red, yellow, blue
-            status: test # appears in status label
+            ## title: Coming up next # Specify a title header
+            ## titleBackgroundColor: green # allowed values are 'success', 'green', 'failure', 'red', 'cancelled', 'yellow', 'skipped', 'blue'
+            ## status: test # appears in status label
             message: >-
-              Hello world...
+              Next up is this and that
           env:
             SHOULD_DISPLAY_ACTOR_LABEL: false
             SHOULD_DISPLAY_VIEW_RUN_BUTTON: false
