@@ -19,11 +19,11 @@ jobs:
             $next = ($events | Select-Object time -Unique -First 1).time
             $nextEvents = ($events | Where-Object { $_.time -eq $next })
             $message = @()
-            $message += "Coming up next..."
+            $message += "Coming up next...\n\n"
 
             if ($nextEvents) {
               foreach ($event in $nextEvents) {
-                $message += "$($event.name) with '$($event.talk)' in the $($event.room) room"
+                $message += "$($event.name) with '$($event.talk)' in the $($event.room) room\n\n"
               }
             }
             $body = '{"text":"{{message}}"}'.Replace("{{message}}", $message)
