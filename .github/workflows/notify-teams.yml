@@ -18,7 +18,7 @@ jobs:
             token: ${{ secrets.JB_ACCESS_TOKEN }}
             submodules: true
         - run: |
-            ./events-messenger/pwsh/Get-NextEvent.ps1
+            ./events-messenger/pwsh/Get-NextEvent.ps1 -path events-messenger/data/talks.csv
           shell: pwsh
         - run: |
             ./events-messenger/pwsh/Get-Send-TeamsMessage.ps1 -uri -title "Coming up next" -message ${{steps.step1.outputs.message}}
