@@ -19,5 +19,6 @@ $params = @{
   "Method" = "POST"
   "Body" = $json
   "contentType" = "application/json"
+  "TextFormat" = "markdown"
 }
 Invoke-RestMethod @params

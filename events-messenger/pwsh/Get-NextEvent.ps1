@@ -10,7 +10,7 @@ $message = @()
 $message += "Coming up next...\n\n"
 if ($nextEvents) {
   foreach ($event in $nextEvents) {
-    $message += "$($event.name) with $($event.talk) in the $($event.room) room\n\n"
+    "**$($event.name)** with **$($event.talk)** in the [$($event.room)](https://google.co.uk) room\n\n"
   }
 }
 Write-Output "message=$message" >> $env:GITHUB_OUTPUT
