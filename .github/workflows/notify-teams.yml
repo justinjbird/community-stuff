@@ -11,7 +11,7 @@ jobs:
       name: send message to teams
       steps:
         - run: |
-            $events = Import-Csv -Path ./events/data/talks.csv
+            $events = Import-Csv -Path events/data/talks.csv
             $next = ($events | Select-Object time -Unique -First 1).time
             $nextEvents = ($events | Where-Object { $_.time -eq $next })
             $message = @()
