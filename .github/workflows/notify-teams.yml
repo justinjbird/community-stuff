@@ -15,17 +15,8 @@ jobs:
             token: ${{ secrets.JB_ACCESS_TOKEN }}
             submodules: true
         - run: |
-            $events = Import-Csv -Path events-messager/data/talks.csv
-            $next = ($events | Select-Object time -Unique -First 1).time
-            $nextEvents = ($events | Where-Object { $_.time -eq $next })
-            $message = @()
-            $message += "Coming up next...\n\n"
-
-            if ($nextEvents) {
-              foreach ($event in $nextEvents) {
-                $message += "$($event.name) with '$($event.talk)' in the $($event.room) room\n\n"
-              }
-            }
-            $body = '{"text":"{{message}}"}'.Replace("{{message}}", $message)
-            Invoke-RestMethod -Method post -ContentType 'Application/Json' -Body $body -Uri ${{ secrets.TEAMSWEBHOOK }}
+            ./events-messenger/pwsh/Get-NextEvent.ps1
+          shell: pwsh
+        - run: |
+            ./events-messenger/pwsh/Get-Send-TeamsMessage.ps1 -uri -title "Coming up next" -message ${{steps.step1.outputs.message}}
           shell: pwsh
