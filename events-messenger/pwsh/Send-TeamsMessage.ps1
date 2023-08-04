@@ -20,4 +20,4 @@ $params = @{
   "Body" = $json
   "contentType" = "application/json"
 }
-Invoke-RestMethod $params
+Invoke-RestMethod @params
