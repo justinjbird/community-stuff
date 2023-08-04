@@ -6,19 +6,86 @@ param(
   [Parameter(Mandatory=$true)]
   [string]$message
 )
-$json = [PSCustomObject][Ordered]@{
-  "@type" = "MessageCard"
-  "@context" = "<http://schema.org/extensions>"
-  # "summary" = "Meine erste Alert-Summary!"
-  # "themeColor" = '0078D7'
-  "title" = $title
-  "text" = $message
-} | ConvertTo-Json
+$body = [ordered]@{
+  type = "AdaptiveCard"
+  body = @(
+    [ordered]@{
+      type = "TextBlock"
+      text = $title
+      wrap = $true
+      style = "heading"
+    }
+    [ordered]@{
+      type = "ColumnSet"
+      columns = @(
+        [ordered]@{
+          type = "Column"
+          width = "stretch"
+          items = @(
+            [ordered]@{
+              type = "TextBlock"
+              text = "**Main Room**"
+              wrap = $true
+            }
+            [ordered]@{
+              type = "TextBlock"
+              text = "<<TBC>>"
+              wrap = $true
+            }
+          )
+        }
+      )
+    }
+    [ordered]@{
+      type = "ColumnSet"
+      columns = @(
+        [ordered]@{
+          type = "Column"
+          width = "stretch"
+          items = @(
+            [ordered]@{
+              type = "TextBlock"
+              text = "**Analytics Room**"
+              wrap = $true
+            }
+            [ordered]@{
+              type = "TextBlock"
+              text = "<<TBC>>"
+              wrap = $true
+            }
+          )
+        }
+      )
+    }
+    [ordered]@{
+      type = "ColumnSet"
+      columns = @(
+        [ordered]@{
+          type = "Column"
+          width = "stretch"
+          items = @(
+            [ordered]@{
+              type = "TextBlock"
+              text = "**Synapse Room**"
+              wrap = $true
+            }
+            [ordered]@{
+              type = "TextBlock"
+              text = "<<TBC>>"
+              wrap = $true
+            }
+          )
+        }
+      )
+    }
+  )
+  '$schema' = "http://adaptivecards.io/schemas/adaptive-card.json"
+  version = "1.6"
+} | ConvertTo-Json -Depth 6
 $params = @{
   "URI" = $uri
   "Method" = "POST"
-  "Body" = $json
+  "Body" = $body
   "contentType" = "application/json"
-  "TextFormat" = "markdown"
 }
 Invoke-RestMethod @params
