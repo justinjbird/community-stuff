@@ -21,6 +21,6 @@ jobs:
             message: >-
               Hello world...
           env:
-            SHOULD_DISPLAY_ACTOR_LABEL: true
-            SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
-            SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
+            SHOULD_DISPLAY_ACTOR_LABEL: false
+            SHOULD_DISPLAY_VIEW_RUN_BUTTON: false
+            SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: false
