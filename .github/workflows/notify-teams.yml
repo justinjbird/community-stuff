@@ -15,7 +15,7 @@ jobs:
             # can be muli-line using YAML mult-line string
             webhookUrl: |
               ${{ secrets.TEAMSWEBHOOK }}
-            ## title: Coming up next # Specify a title header
+            title: What's up next
             ## titleBackgroundColor: green # allowed values are 'success', 'green', 'failure', 'red', 'cancelled', 'yellow', 'skipped', 'blue'
             ## status: test # appears in status label
             message: >-
