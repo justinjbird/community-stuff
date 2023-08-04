@@ -20,6 +20,8 @@ jobs:
         - run: |
             ./events-messenger/pwsh/Get-NextEvent.ps1 -path events-messenger/data/talks.csv
           shell: pwsh
+          id: get-events
         - run: |
-            ./events-messenger/pwsh/Send-TeamsMessage.ps1 -uri ${{ secrets.TEAMSWEBHOOK}} -title "Coming up next" -message ${{steps.step1.outputs.message}}
+            ./events-messenger/pwsh/Send-TeamsMessage.ps1 -uri ${{secrets.TEAMSWEBHOOK}} -title "Coming up next" -message ${{steps.get-events.outputs.message}}
           shell: pwsh
+          id: send-events

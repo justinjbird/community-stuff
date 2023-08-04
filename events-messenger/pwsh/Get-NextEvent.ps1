@@ -14,4 +14,4 @@ if ($nextEvents) {
   }
 }
 $message = "{""text"":""${nextEventsMessage}""}"
-Write-Output "::set-output name=message::$message"
+Write-Output "message=$message" >> $env:GITHUB_OUTPUT
