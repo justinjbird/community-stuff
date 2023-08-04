@@ -22,6 +22,6 @@ jobs:
           shell: pwsh
           id: get-events
         - run: |
-            ./events-messenger/pwsh/Send-TeamsMessage.ps1 -uri ${{secrets.TEAMSWEBHOOK}} -title "Coming up next" -message ${{steps.get-events.outputs.message}}
+            ./events-messenger/pwsh/Send-TeamsMessage.ps1 -uri ${{secrets.TEAMSWEBHOOK}} -title "Coming up next" -message '${{steps.get-events.outputs.message}}'
           shell: pwsh
           id: send-events
