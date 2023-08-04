@@ -10,7 +10,7 @@ $nextEventsMessage = @()
 $nextEventsMessage += "Coming up next...\n\n"
 if ($nextEvents) {
   foreach ($event in $nextEvents) {
-    $nextEventsMessage += "$($event.name) with '$($event.talk)' in the $($event.room) room\n\n"
+    $nextEventsMessage += "$($event.name) with $($event.talk) in the $($event.room) room\n\n"
   }
 }
 $message = "{""text"":""${nextEventsMessage}""}"
