@@ -1,0 +1,26 @@
+name: notify-teams
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+    message_teams:
+      runs-on: ubuntu-latest
+      name: send message to teams
+      steps:
+        - uses: neonidian/teams-notify-build-status@v3
+          with:
+            # can be muli-line using YAML mult-line string
+            webhookUrl: |
+              ${{ secrets.TEAMSWEBHOOK }}
+            title: First Test # Specify a title header
+            titleBackgroundColor: green # allowed values are green, red, yellow, blue
+            status: test # appears in status label
+            message: >-
+              Hello world...
+          env:
+            SHOULD_DISPLAY_ACTOR_LABEL: true
+            SHOULD_DISPLAY_VIEW_RUN_BUTTON: true
+            SHOULD_DISPLAY_VIEW_COMMIT_BUTTON: true
