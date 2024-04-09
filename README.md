@@ -2,6 +2,5 @@
 
 ## Inventory
 
-- Blog Post content
-- Code Club content
-- Talks
+- [Blog Post content](./blog-posts/)
+- [Code Club content](./code-club/)
